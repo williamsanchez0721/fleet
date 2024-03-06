@@ -1,7 +1,7 @@
 import Stripe from 'stripe';
-import { STRIPE_PRIVATE_KEY } from '../../../config/index.js'
+import config from '../../../config/index.js'
 
-const stripe = new Stripe(STRIPE_PRIVATE_KEY);
+const stripe = new Stripe(config.STRIPE_PRIVATE_KEY);
 
 export const createSession = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
