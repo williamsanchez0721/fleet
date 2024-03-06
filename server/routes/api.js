@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createSession } from 'api/app/Http/controllers/payment.controller.js';
+import { createSession } from '../app/Http/controllers/payment.controller.js';
 
 const router = Router();
 

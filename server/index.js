@@ -1,6 +1,6 @@
 import express from 'express'
-import paymentRoutes from 'api/routes/api.js'
-import { PORT } from 'api/config/index.js'
+import paymentRoutes from './routes/api.js'
+import { PORT } from './config/index.js'
 
 const app = express();
 
