@@ -1,0 +1,155 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                Int            @id @default(autoincrement())
+  name              String?
+  email             String?        @unique
+  email_verified_at DateTime?
+  image             String?
+  password          String?
+  sales             Sale[]
+  subscriptions     Subscription[]
+  role              Role           @relation(fields: [role_id], references: [id])
+  role_id           Int            @default(1) // relation scalar field (used in the @relation attribute above)
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime?      @updatedAt
+  deletedAt         Boolean        @default(false)
+}
+
+model Role {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  users     User[]
+  deletedAt Boolean @default(false)
+}
+
+model Product {
+  id        Int                 @id @default(autoincrement())
+  name      String
+  price     Decimal @db.Decimal(9,2) 
+  currency  String
+  brochure  String?
+  benefits  BenefitOnProducts[]
+  sales     SaleDetailProduct[]
+  createdAt DateTime            @default(now())
+  updatedAt DateTime?           @updatedAt
+  deletedAt Boolean             @default(false)
+}
+
+model BenefitOnProducts {
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int // relation scalar field (used in the @relation attribute above)
+  benefit   Benefit @relation(fields: [benefitId], references: [id])
+  benefitId Int // relation scalar field (used in the @relation attribute above)
+
+  @@id([productId, benefitId])
+}
+
+model Benefit {
+  id          Int                 @id @default(autoincrement())
+  name        String
+  description String?
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime?           @updatedAt
+  products    BenefitOnProducts[]
+  deletedAt   Boolean             @default(false)
+}
+
+model Package {
+  id            Int                         @id @default(autoincrement())
+  name          String
+  description   String?
+  price         Decimal @db.Decimal(9,2) 
+  currency      String
+  comments      String
+  createdAt     DateTime                    @default(now())
+  services      ServiceOnPackage[]
+  subscriptions SubscriptionDetailPackage[]
+  updatedAt     DateTime?                   @updatedAt
+  deletedAt     Boolean                     @default(false)
+}
+
+model ServiceOnPackage {
+  package   Package @relation(fields: [packageId], references: [id])
+  packageId Int // relation scalar field (used in the @relation attribute above)
+  service   Service @relation(fields: [serviceId], references: [id])
+  serviceId Int // relation scalar field (used in the @relation attribute above)
+
+  @@id([packageId, serviceId])
+}
+
+model Service {
+  id          Int                @id @default(autoincrement())
+  name        String
+  description String?
+  price       Decimal @db.Decimal(9,2)   
+  packages    ServiceOnPackage[]
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime?          @updatedAt
+  deletedAt   Boolean            @default(false)
+}
+
+model Sale {
+  id              Int                 @id @default(autoincrement())
+  user            User                @relation(fields: [clienteId], references: [id])
+  saleProducts    SaleDetailProduct[]
+  shippingAddress String?
+  paymentResult   String?
+  isPaid          Boolean             @default(false)
+  paidAt          String?
+  transactionId   String?
+  city            String?
+  country         String?
+  totalPrice      Int
+  clienteId       Int
+  createdAt       DateTime            @default(now())
+  deletedAt       Boolean             @default(false)
+}
+
+model SaleDetailProduct {
+  id        Int      @id @default(autoincrement())
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  sale      Sale     @relation(fields: [saleId], references: [id])
+  saleId    Int
+  quantity  Int
+  price     Decimal @db.Decimal(9,2) 
+  subtotal  Decimal
+  createdAt DateTime @default(now())
+  deletedAt Boolean  @default(false)
+}
+
+model Subscription {
+  id                  Int                         @id @default(autoincrement())
+  user                User                        @relation(fields: [clienteId], references: [id])
+  subscriptionPackage SubscriptionDetailPackage[]
+  shippingAddress     String?
+  paymentResult       String?
+  isPaid              Boolean                     @default(false)
+  paidAt              String?
+  transactionId       String?
+  city                String?
+  country             String?
+  clienteId           Int
+  createdAt           DateTime                    @default(now())
+  deletedAt           Boolean                     @default(false)
+}
+
+model SubscriptionDetailPackage {
+  id             Int          @id @default(autoincrement())
+  package        Package      @relation(fields: [packageId], references: [id])
+  packageId      Int
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id])
+  subscriptionId Int
+  quantity       Int
+  price          Decimal @db.Decimal(9,2) 
+  subtotal       Decimal
+  deletedAt      Boolean      @default(false)
+}
