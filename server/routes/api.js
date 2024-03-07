@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { createSession, getResponse } from '../app/Http/Controllers/payment.controller.js';
 import productController from '../app/Http/Controllers/product.controller.js';
 import packageController from '../app/Http/Controllers/package.controller.js';
+import userController from '../app/Http/Controllers/user.controller.js';
 
 const router = Router();
 
@@ -24,5 +25,12 @@ router.get('/packages/show/:id', packageController.one)
 router.post('/packages/create', packageController.create)
 router.put('/packages/edit/:id', packageController.update)
 router.delete('/packages/:id', packageController.delete)
+
+// Users
+router.get('/users', userController.all)
+router.get('/users/show/:id', userController.one)
+router.post('/users/create', userController.create)
+router.put('/users/edit/:id', userController.update)
+router.delete('/users/:id', userController.delete)
 
 export default router;
