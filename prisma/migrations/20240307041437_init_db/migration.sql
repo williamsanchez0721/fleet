@@ -9,7 +9,7 @@ CREATE TABLE "User" (
     "role_id" INTEGER NOT NULL DEFAULT 1,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3),
-    "deletedAt" TIMESTAMP(3),
+    "deletedAt" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -18,7 +18,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Role" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "deletedAt" TIMESTAMP(3),
+    "deletedAt" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Role_pkey" PRIMARY KEY ("id")
 );
@@ -27,12 +27,12 @@ CREATE TABLE "Role" (
 CREATE TABLE "Product" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "price" INTEGER NOT NULL,
+    "price" DECIMAL(9,2) NOT NULL,
     "currency" TEXT NOT NULL,
     "brochure" TEXT,
-    "createdAt" TIMESTAMP(3) NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3),
-    "deletedAt" TIMESTAMP(3),
+    "deletedAt" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
@@ -52,7 +52,7 @@ CREATE TABLE "Benefit" (
     "description" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3),
-    "deletedAt" TIMESTAMP(3),
+    "deletedAt" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Benefit_pkey" PRIMARY KEY ("id")
 );
@@ -62,12 +62,12 @@ CREATE TABLE "Package" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
-    "price" INTEGER NOT NULL,
+    "price" DECIMAL(9,2) NOT NULL,
     "currency" TEXT NOT NULL,
     "comments" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3),
-    "deletedAt" TIMESTAMP(3),
+    "deletedAt" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Package_pkey" PRIMARY KEY ("id")
 );
@@ -85,10 +85,10 @@ CREATE TABLE "Service" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
-    "price" INTEGER NOT NULL,
+    "price" DECIMAL(9,2) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3),
-    "deletedAt" TIMESTAMP(3),
+    "deletedAt" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Service_pkey" PRIMARY KEY ("id")
 );
@@ -106,7 +106,7 @@ CREATE TABLE "Sale" (
     "totalPrice" INTEGER NOT NULL,
     "clienteId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "deletedAt" TIMESTAMP(3),
+    "deletedAt" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Sale_pkey" PRIMARY KEY ("id")
 );
@@ -117,9 +117,10 @@ CREATE TABLE "SaleDetailProduct" (
     "productId" INTEGER NOT NULL,
     "saleId" INTEGER NOT NULL,
     "quantity" INTEGER NOT NULL,
-    "price" INTEGER NOT NULL,
+    "price" DECIMAL(9,2) NOT NULL,
     "subtotal" DECIMAL(65,30) NOT NULL,
-    "deletedAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "deletedAt" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "SaleDetailProduct_pkey" PRIMARY KEY ("id")
 );
@@ -136,7 +137,7 @@ CREATE TABLE "Subscription" (
     "country" TEXT,
     "clienteId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "deletedAt" TIMESTAMP(3),
+    "deletedAt" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Subscription_pkey" PRIMARY KEY ("id")
 );
@@ -147,9 +148,9 @@ CREATE TABLE "SubscriptionDetailPackage" (
     "packageId" INTEGER NOT NULL,
     "subscriptionId" INTEGER NOT NULL,
     "quantity" INTEGER NOT NULL,
-    "price" INTEGER NOT NULL,
+    "price" DECIMAL(9,2) NOT NULL,
     "subtotal" DECIMAL(65,30) NOT NULL,
-    "deletedAt" TIMESTAMP(3),
+    "deletedAt" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "SubscriptionDetailPackage_pkey" PRIMARY KEY ("id")
 );

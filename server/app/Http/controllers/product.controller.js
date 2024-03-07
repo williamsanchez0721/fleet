@@ -6,71 +6,90 @@ const prisma = new PrismaClient();
 export default {
     all: async (req, res) => {
         try {
-            const products = await prisma.product.findMany()
+            // Buscar productos no eliminados
+            const products = await prisma.product.findMany({
+                where: {
+                    deletedAt: false
+                }
+            })
                 .then((items) => {
                     success(req, res, items, 200);
                 });
         } catch (e) {
-            error(req, res, e, 500);
+            error(req, res, e?.message, 500);
         }
     },
     one: async (req, res) => {
         try {
             const product = await prisma.product.findUniqueOrThrow({
                 where: {
-                    id: req.params.id || '',
+                    id: parseInt(req.params.id) || 0,
                 },
             })
                 .then((item) => {
                     success(req, res, item, 200);
                 });
         } catch (e) {
-            error(req, res, e, 500);
+            error(req, res, e?.message, 500);
         }
     },
     create: async (req, res) => {
-        const newProduct = await prisma.product
-            .create({
-                data: req.body,
-            })
-            .then((item) => {
-                success(req, res, item, 200);
-            });
+        try {
+            const newProduct = await prisma.product
+                .create({
+                    data: req.body,
+                })
+                .then((item) => {
+                    success(req, res, item, 201);
+                });
+        } catch (e) {
+            error(req, res, e?.message, 500);
+        }
     },
     update: async (req, res) => {
-        const newProduct = await prisma.product
-            .create({
+        try {
+            // Buscamos el producto
+            const findProduct = await prisma.product.findUniqueOrThrow({
+                where: {
+                    id: parseInt(req.params.id) || 0,
+                },
+            })
+            // Actualizamos producto buscado
+            const product = await prisma.product.update({
+                where: {
+                    id: findProduct?.id,
+                },
                 data: req.body,
             })
-            .then((item) => {
-                success(req, res, item, 200);
-            });
+                .then((item) => {
+                    success(req, res, item, 201);
+                });
+        } catch (e) {
+            error(req, res, e?.message, 500);
+        }
     },
     delete: async (req, res) => {
-        const newProduct = await prisma.product
-            .create({
-                data: req.body,
+        try {
+            // Buscamos el producto
+            const findProduct = await prisma.product.findUniqueOrThrow({
+                where: {
+                    id: parseInt(req.params.id) || 0,
+                },
             })
-            .then((item) => {
-                success(req, res, item, 200);
-            });
+            // Actualizamos producto campo deleted
+            const product = await prisma.product.update({
+                where: {
+                    id: findProduct?.id,
+                },
+                data: {
+                    deletedAt: true
+                },
+            })
+                .then((item) => {
+                    success(req, res, "Product successfully eliminated.", 201);
+                });
+        } catch (e) {
+            error(req, res, e?.message, 500);
+        }
     },
 };
-
-/* module.exports = {
-    all: function(req, res){
-        res.send('All todos')
-    },
-    viewOne: function(req, res){
-        console.log('Viewing ' + req.params.id);
-    },
-    create: function(req, res){
-        console.log('Todo created')
-    },
-    destroy: function(req, res){
-        console.log('Todo deleted')
-    },
-    edit: function(req, res){
-        console.log('Todo ' + req.params.id + ' updated')
-    }
-}; */
