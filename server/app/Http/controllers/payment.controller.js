@@ -1,7 +1,8 @@
 import Stripe from 'stripe';
+import config from '../../../config/index.js'
+import { success, error } from '../Responses/response.js'
 
-const stripe = new Stripe(
-    'sk_test_51OqzuTGIi2qOmAI9uzXR3cxAnhM0G4XZA9rzrnoXMCU0B9jTK16lMdeaLyMVu3dDvF0qIngJSsv9OfW3Bhf0c3BJ00TOInih12');
+const stripe = new Stripe(config.STRIPE_PRIVATE_KEY);
 
 export const createSession = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
@@ -30,9 +31,13 @@ export const createSession = async (req, res) => {
             }
         ],
         mode: 'payment',
-        success_url: 'http://localhost:3000/success',
-        cancel_url: 'http://localhost:3000/cancel',
+        success_url: `${config.URL_FRONT}:${config.PORT}/success`,
+        success_url: `${config.URL_FRONT}:${config.PORT}/cancel`,
     })
 
     return res.json(session)
 };
+
+export const getResponse = (req, res) => {
+    return success(req, res, "Todo correcto", 200)
+}

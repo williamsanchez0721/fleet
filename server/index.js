@@ -1,13 +1,15 @@
 import express from 'express'
-import paymentRoutes from 'api/routes/api.js'
-import { PORT } from 'api/config/index.js'
+import routes from './routes/api.js'
+import config from './config/index.js';
 
 const app = express();
 
+// Acepte Json
 app.use(express.json())
 
-app.use(paymentRoutes)
+// Rutas con prefijo api
+app.use('/api', routes)
 
-app.listen(PORT)
+app.listen(config?.PORT)
 
-console.log('Server on port', PORT)
+console.log('Server on port', config?.PORT)
