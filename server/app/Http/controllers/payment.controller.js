@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import config from '../../../config/index.js'
+import { success, error } from '../Responses/response.js'
 
 const stripe = new Stripe(config.STRIPE_PRIVATE_KEY);
 
@@ -30,9 +31,13 @@ export const createSession = async (req, res) => {
             }
         ],
         mode: 'payment',
-        success_url: 'http://localhost:3000/success',
-        cancel_url: 'http://localhost:3000/cancel',
+        success_url: `${config.URL_FRONT}:${config.PORT}/success`,
+        success_url: `${config.URL_FRONT}:${config.PORT}/cancel`,
     })
 
     return res.json(session)
 };
+
+export const getResponse = (req, res) => {
+    return success(req, res, "Todo correcto", 200)
+}
