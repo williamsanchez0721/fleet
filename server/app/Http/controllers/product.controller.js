@@ -21,9 +21,10 @@ export default {
     },
     one: async (req, res) => {
         try {
+            const id = Number(req.params.id)
             const product = await prisma.product.findUniqueOrThrow({
                 where: {
-                    id: parseInt(req.params.id) || 0,
+                    id: id || 0,
                 },
             })
                 .then((item) => {
@@ -48,16 +49,11 @@ export default {
     },
     update: async (req, res) => {
         try {
-            // Buscamos el producto
-            const findProduct = await prisma.product.findUniqueOrThrow({
-                where: {
-                    id: parseInt(req.params.id) || 0,
-                },
-            })
+            const id = Number(req.params.id)
             // Actualizamos producto buscado
             const product = await prisma.product.update({
                 where: {
-                    id: findProduct?.id,
+                    id: id,
                 },
                 data: req.body,
             })
@@ -70,16 +66,11 @@ export default {
     },
     delete: async (req, res) => {
         try {
-            // Buscamos el producto
-            const findProduct = await prisma.product.findUniqueOrThrow({
-                where: {
-                    id: parseInt(req.params.id) || 0,
-                },
-            })
+            const id = Number(req.params.id)
             // Actualizamos producto campo deleted
             const product = await prisma.product.update({
                 where: {
-                    id: findProduct?.id,
+                    id: id,
                 },
                 data: {
                     deletedAt: true
