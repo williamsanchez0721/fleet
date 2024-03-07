@@ -1,15 +1,17 @@
-export const success = (req, res, message = '', status = 200) => {
+export const success = (req, res, message = '', status = 200, data = '') => {
     res.status(status).send({
         error: false,
         status: status,
-        body: message,
+        message: message,
+        body: data
     })
 }
 
-export const error = (req, res, message = 'Internal error.', status = 500) => {
+export const error = (req, res, message = 'Internal error.', status = 500, data = '') => {
     res.status(status).send({
         error: true,
         status: status,
-        body: message,
+        message: message,
+        body: data
     })
 }
