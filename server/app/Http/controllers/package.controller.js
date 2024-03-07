@@ -16,7 +16,7 @@ export default {
                     success(req, res, 'Successfully consulted.', 200, items);
                 });
         } catch (e) {
-            error(req, res, e?.message, 500);
+            error(req, res, e?.message, 500, 0);
         }
     },
     one: async (req, res) => {
@@ -31,7 +31,7 @@ export default {
                     success(req, res, 'Successfully consulted.', 200, item);
                 });
         } catch (e) {
-            error(req, res, e?.message, 500);
+            error(req, res, e?.message, 500, 0);
         }
     },
     create: async (req, res) => {
@@ -44,7 +44,7 @@ export default {
                     success(req, res, 'Successfully created.', 201, item);
                 });
         } catch (e) {
-            error(req, res, e?.message, 500);
+            error(req, res, e?.message, 500, 0);
         }
     },
     update: async (req, res) => {
@@ -61,7 +61,7 @@ export default {
                     success(req, res, 'Successfully updated.', 201, item);
                 });
         } catch (e) {
-            error(req, res, e?.message, 500);
+            error(req, res, e?.message, 500, 0);
         }
     },
     delete: async (req, res) => {
@@ -81,7 +81,7 @@ export default {
                     success(req, res, "Successfully eliminated.", 200);
                 });
         } catch (e) {
-            error(req, res, e?.message, 500);
+            error(req, res, e?.message, 500, 0);
         }
     },
 };
