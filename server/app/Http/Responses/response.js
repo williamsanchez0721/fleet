@@ -3,7 +3,13 @@ export const success = (req, res, message = '', status = 200, data = '') => {
         error: false,
         status: status,
         message: message,
-        body: data
+        body: data,
+        meta: {
+            "organization": "fleet",
+            "authors": [
+                "atsugula",
+            ],
+        }
     })
 }
 
@@ -12,6 +18,12 @@ export const error = (req, res, message = 'Internal error.', status = 500, data 
         error: true,
         status: status,
         message: message,
-        body: data
+        body: data,
+        meta: {
+            "organization": "fleet",
+            "authors": [
+                "atsugula",
+            ],
+        }
     })
 }
