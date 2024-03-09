@@ -1,9 +1,10 @@
-import { Router } from 'express';
 import { createSession, getResponse } from '../app/Http/Controllers/payment.controller.js';
 import productController from '../app/Http/Controllers/product.controller.js';
 import packageController from '../app/Http/Controllers/package.controller.js';
 import userController from '../app/Http/Controllers/user.controller.js';
 import authController from '../app/Http/Controllers/auth.controller.js';
+import middlewareAuth from '../app/Http/Middleware/auth.js';
+import { Router } from 'express';
 
 const router = Router();
 
@@ -17,7 +18,7 @@ router.get('/cancel', (req, res) => res.send('cancel'))
 router.post('/login', authController.login)
 
 // Products
-router.get('/products', productController.all)
+router.get('/products', middlewareAuth.validateToken, productController.all)
 router.get('/products/show/:id', productController.one)
 router.post('/products/create', productController.create)
 router.put('/products/edit/:id', productController.update)
