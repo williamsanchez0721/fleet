@@ -3,6 +3,7 @@ import { createSession, getResponse } from '../app/Http/Controllers/payment.cont
 import productController from '../app/Http/Controllers/product.controller.js';
 import packageController from '../app/Http/Controllers/package.controller.js';
 import userController from '../app/Http/Controllers/user.controller.js';
+import authController from '../app/Http/Controllers/auth.controller.js';
 
 const router = Router();
 
@@ -11,6 +12,9 @@ router.get('/', getResponse)
 router.get('/create-checkout-session', createSession)
 router.get('/success', (req, res) => res.send('success'))
 router.get('/cancel', (req, res) => res.send('cancel'))
+
+// Rutas login
+router.post('/login', authController.login)
 
 // Products
 router.get('/products', productController.all)
