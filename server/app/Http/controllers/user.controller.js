@@ -1,7 +1,6 @@
 import { success, error } from "../Responses/response.js";
 import { PrismaClient, Prisma } from '@prisma/client'
 import bcrypt from 'bcrypt'
-import auth from '../Middleware/auth.js'
 
 const prisma = new PrismaClient();
 
