@@ -1,8 +1,8 @@
-import { Router } from 'express';
 import { createSession, getResponse } from '../app/Http/Controllers/payment.controller.js';
 import productController from '../app/Http/Controllers/product.controller.js';
 import packageController from '../app/Http/Controllers/package.controller.js';
 import userController from '../app/Http/Controllers/user.controller.js';
+import { Router } from 'express';
 
 const router = Router();
 
