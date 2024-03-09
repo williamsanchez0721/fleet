@@ -1,7 +1,28 @@
 import { success, error } from "../Responses/response.js";
 import { PrismaClient, Prisma } from '@prisma/client'
+import bcrypt from 'bcrypt'
+import auth from '../Middleware/auth.js'
 
 const prisma = new PrismaClient();
+
+async function findUserById(id) {
+    const user = await prisma.user.findUnique({
+        where: {
+            id: id,
+            deletedAt: false,
+        }
+    });
+    if (!user) {
+        throw new Error('Not found.');
+    }
+    return user;
+}
+
+// Encriptar contraseña
+async function encryption(password) {
+    const textCrypt = await bcrypt.hash(password.toString(), 5);
+    return textCrypt;
+}
 
 export default {
     all: async (req, res) => {
@@ -22,20 +43,17 @@ export default {
     one: async (req, res) => {
         try {
             const id = Number(req.params.id)
-            const userOne = await prisma.user.findUniqueOrThrow({
-                where: {
-                    id: id || 0,
-                },
-            })
-                .then((item) => {
-                    success(req, res, 'Successfully consulted.', 200, item);
-                });
+            const user = await findUserById(id);
+            success(req, res, 'Successfully consulted.', 200, user);
         } catch (e) {
             error(req, res, e?.message, 500, 0);
         }
     },
     create: async (req, res) => {
         try {
+            // Cambiar la contraseña
+            req.body.password = await encryption(req.body.password)
+            // Crear usuario
             const new_user = await prisma.user
                 .create({
                     data: req.body,
@@ -49,17 +67,19 @@ export default {
     },
     update: async (req, res) => {
         try {
+            // return res.json(req.body)
             const id = Number(req.params.id)
-            // Actualizamos user buscado
-            const userOne = await prisma.user.update({
+            // Buscamos el usuario
+            const user = await findUserById(id);
+            // Actualizamos
+            const updatedUser = await prisma.user.update({
                 where: {
-                    id: id,
+                    id: user.id,
+                    deletedAt: false,
                 },
                 data: req.body,
-            })
-                .then((item) => {
-                    success(req, res, 'Successfully updated.', 201, item);
-                });
+            });
+            success(req, res, 'Successfully updated.', 201, updatedUser);
         } catch (e) {
             error(req, res, e?.message, 500, 0);
         }
@@ -68,18 +88,18 @@ export default {
         try {
             // Buscamos el user
             const id = Number(req.params.id)
-            // Actualizamos user campo deleted
-            const userOne = await prisma.user.update({
+            // Buscamos el usuario
+            const user = await findUserById(id);
+            // Actualizamos
+            await prisma.user.update({
                 where: {
                     id: id,
                 },
                 data: {
                     deletedAt: true
                 },
-            })
-                .then((item) => {
-                    success(req, res, "Successfully eliminated.", 200);
-                });
+            });
+            success(req, res, "Successfully eliminated.", 200);
         } catch (e) {
             error(req, res, e?.message, 500, 0);
         }
