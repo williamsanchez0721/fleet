@@ -1,0 +1,125 @@
+{
+  "title-products": "Productos",
+  "button-add":"Agregar al carrito",
+  "button-options" : "Opciones",
+  "button-buy":"Comprar ahora",
+  "cart-empty":"Tu carrito esta vacio",
+  "product-add": "Producto agregado al carrito",
+  "package-add" : "Paquete agregado al carrito",
+  "subscription" : "Camion / mes",
+  "back" : "Atras",
+  "package-custom" : {
+    "text":"EL PRECIO VARIA SEGUN LOS SERVICIOS",
+    "button":"Construye tu paquete de servicios"
+  },
+  "pages": {
+    "login":"Iniciar Sesion",
+    "register" : "Registrarse"
+   },
+  "menu" : {
+     "dashboard": "Panel",
+     "home" : "Inicio",
+     "account" : "Mi cuenta",
+     "purchase" : "Mis compras",
+     "logout" : "Cerrar Sesion",
+     "subscription" : "Mis suscripciones"
+
+  },
+  "button-lng" : "Idioma",
+  "button-profile":"Perfil",
+  "button-cart":"Ver carrito",
+  "button-dark": "Modo",
+  "title-benefits": "Beneficios",
+  "title-packages": "Paquetes",
+  "bttn-subscribe": "Suscribirse",
+  "mission": "Nuestra misión es integrar la tecnología de la información con las actividades humanas para crear mejores lugares de trabajo",
+  "phone": "Telefono",
+  "cellphone": "Celular",
+  "e-mail": "Correo",
+  "cart-page": {
+    "title": "Carrito de compras",
+    "bttn-delete": "Eliminar", 
+    "bttn-buy": "Comprar Ahora",
+    "purchase": {
+      "title":"Compra",
+      "amount" : "No Productos",
+      "bttn" : "Verificar"
+    }
+  },
+  "custom-package": {
+    "title": "Arrastra y suelta los servicios que desees",
+    "title-services": "Servicios", 
+    "title-package": "Paquete personalizado",
+    "purchase": {
+      "title":"Resumen de compra",
+      "bttn" : "Verificar"
+    }
+  },
+  "result-shop": {
+    "title": "Estado",
+    "loading":"Cargando ... ",
+    "msg": "Su compra ha sido exitosa !", 
+    "info": "Un correo ha sido enviado con toda la informacion",
+    "bttn" : "Continuar comprando"
+    
+  },
+  "account": {
+    "menu":{
+      "title":"Cuenta",
+      "profile": "Perfil", 
+      "purchase": "Mis compras",
+      "subscription" :"Mis suscripciones"
+      
+    },
+    "user":{
+      "title": "Mi Perfil",
+      "subtitle": "Administra tu cuenta",
+      "name": "Nombre",
+      "email":"Correo",
+      "password":"Contrasena",
+      "bttn-save": "Guardar",
+      "bttn-change": "Cambiar",
+      "bttn-cancel" :"Cancelar"
+
+
+    }
+    
+  },
+  "purchase":{
+    "title": "Mis compras",
+    "date":"Fecha",
+    "paid":"Esta paga?",
+    "products" :"Productos",
+    "packages" :"Packages"
+  },
+  "subscriptions":{
+    "title": "Mis suscripciones"
+   
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

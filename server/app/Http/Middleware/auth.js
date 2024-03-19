@@ -3,7 +3,9 @@ import config from '../../../config/index.js'
 import jwt from "jsonwebtoken";
 
 const passwordPrivate = config.STRIPE_PRIVATE_KEY || '';
+
 export default {
+    
     generateToken: (user) => {
         try {
             const token = jwt.sign({ user: user }, passwordPrivate, { expiresIn: "1h" }, { algorithm: 'RS256' });
@@ -12,6 +14,7 @@ export default {
             return error(req, res, e?.message, 500, 0);
         }
     },
+   
     validateToken: (req, res, next) => {
         const token = req.headers.authorization; // Se debe enviar el token en los headers
         if (!token) {
