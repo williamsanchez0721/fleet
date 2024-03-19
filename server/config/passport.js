@@ -10,8 +10,8 @@ passport.use(
 			scope: ["profile", "email"],
 		},
 		function (accessToken, refreshToken, profile, callback) {
-			console.log('Profile Data')
-			console.log(profile)
+			console.log('Profile Data');
+			console.log(profile);
 			callback(null, profile);
 		}
 	)
@@ -24,3 +24,5 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
 	done(null, user);
 });
+
+export default passport;
