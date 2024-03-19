@@ -1,0 +1,39 @@
+.navbar {
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 5px 0px;
+    background: #ffffffdc;
+    background-size: cover;
+    min-height: 70px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.333); 
+  }
+  
+  .navbar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .navbar-item {
+    padding: 10px 20px;
+    color: #333; /* Cambia el color del texto a negro */
+    cursor: pointer;
+    transition: transform 0.7s;
+    border-radius: 50px; /* Agrega bordes redondeados */
+  }
+  .navbar-item:active {
+    background: #204452;
+    color: white;
+  }
+  .navbar-item:hover {
+    /*transform: translateY(10px);  Efecto de elevación */
+    transform: translateY(-4px);
+    background: #204452;
+    color: white;
+  }
+  
+  

@@ -11,6 +11,13 @@ Then, install all dependecys for to run the project with the command:
 ```bash
 npm install
 ```
+Run this command for to migrate in prisma but before to configure the file .env with the configuration in the variable DATABASE_URL=""
+
+```bash
+npx prisma migrate deploy
+```
+
+To change the module imports for the project to ES6
 
 for run the project of way local with this command 
 ```bash
