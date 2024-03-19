@@ -33,19 +33,19 @@ export default {
                 }
             })
                 .then((items) => {
-                    success(req, res, 'Successfully consulted.', 200, items);
+                    return success(req, res, 'Successfully consulted.', 200, items);
                 });
         } catch (e) {
-            error(req, res, e?.message, 500, 0);
+            return error(req, res, e?.message, 500, 0);
         }
     },
     one: async (req, res) => {
         try {
             const id = Number(req.params.id)
             const user = await findUserById(id);
-            success(req, res, 'Successfully consulted.', 200, user);
+            return success(req, res, 'Successfully consulted.', 200, user);
         } catch (e) {
-            error(req, res, e?.message, 500, 0);
+            return error(req, res, e?.message, 500, 0);
         }
     },
     create: async (req, res) => {
@@ -58,10 +58,10 @@ export default {
                     data: req.body,
                 })
                 .then((item) => {
-                    success(req, res, 'Successfully created.', 201, item);
+                    return success(req, res, 'Successfully created.', 201, item);
                 });
         } catch (e) {
-            error(req, res, e?.message, 500, 0);
+            return error(req, res, e?.message, 500, 0);
         }
     },
     update: async (req, res) => {
@@ -78,9 +78,9 @@ export default {
                 },
                 data: req.body,
             });
-            success(req, res, 'Successfully updated.', 201, updatedUser);
+            return success(req, res, 'Successfully updated.', 201, updatedUser);
         } catch (e) {
-            error(req, res, e?.message, 500, 0);
+            return error(req, res, e?.message, 500, 0);
         }
     },
     delete: async (req, res) => {
@@ -98,9 +98,9 @@ export default {
                     deletedAt: true
                 },
             });
-            success(req, res, "Successfully eliminated.", 200);
+            return success(req, res, "Successfully eliminated.", 200);
         } catch (e) {
-            error(req, res, e?.message, 500, 0);
+            return error(req, res, e?.message, 500, 0);
         }
     },
 };
