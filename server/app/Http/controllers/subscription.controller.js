@@ -1,41 +1,36 @@
 import { success, error } from "../Responses/response.js";
 import { PrismaClient, Prisma } from '@prisma/client'
-import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient();
 
-async function findUserById(id) {
-    const user = await prisma.user.findUnique({
+async function findById(id) {
+    const item = await prisma.subscription.findUnique({
         where: {
             id: id,
             deletedAt: false,
         },
         include: {
-            role: true
+            user: true,
+            subscriptionPackage: true,
         }
     });
-    if (!user) {
+    if (!item) {
         throw new Error('Not found.');
     }
-    return user;
-}
-
-// Encriptar contraseña
-async function encryption(password) {
-    const textCrypt = await bcrypt.hash(password.toString(), 5);
-    return textCrypt;
+    return item;
 }
 
 export default {
     all: async (req, res) => {
         try {
-            // Buscar users no eliminados
-            const users = await prisma.user.findMany({
+            // Buscar subscripciones no eliminados
+            const subscriptions = await prisma.subscription.findMany({
                 where: {
                     deletedAt: false
                 },
                 include: {
-                    role: true
+                    user: true,
+                    subscriptionPackage: true,
                 }
             })
                 .then((items) => {
@@ -48,18 +43,15 @@ export default {
     one: async (req, res) => {
         try {
             const id = Number(req.params.id)
-            const user = await findUserById(id);
-            return success(req, res, 'Successfully consulted.', 200, user);
+            const item = await findById(id);
+            return success(req, res, 'Successfully consulted.', 200, item);
         } catch (e) {
             return error(req, res, e?.message, 500, 0);
         }
     },
     create: async (req, res) => {
         try {
-            // Cambiar la contraseña
-            req.body.password = await encryption(req.body.password)
-            // Crear usuario
-            const new_user = await prisma.user
+            const new_subscription = await prisma.subscription
                 .create({
                     data: req.body,
                 })
@@ -72,39 +64,41 @@ export default {
     },
     update: async (req, res) => {
         try {
-            // return res.json(req.body)
             const id = Number(req.params.id)
-            // Buscamos el usuario
-            const user = await findUserById(id);
-            // Actualizamos
-            const updatedUser = await prisma.user.update({
+            // Buscamos el subscription
+            const item = await findById(id);
+            // Actualizamos subscription buscado
+            const subscriptionOne = await prisma.subscription.update({
                 where: {
-                    id: user.id,
-                    deletedAt: false,
+                    id: item.id,
                 },
                 data: req.body,
-            });
-            return success(req, res, 'Successfully updated.', 201, updatedUser);
+            })
+                .then((item) => {
+                    return success(req, res, 'Successfully updated.', 201, item);
+                });
         } catch (e) {
             return error(req, res, e?.message, 500, 0);
         }
     },
     delete: async (req, res) => {
         try {
-            // Buscamos el user
+            // Buscamos el subscription
             const id = Number(req.params.id)
-            // Buscamos el usuario
-            const user = await findUserById(id);
-            // Actualizamos
-            await prisma.user.update({
+            // Buscamos el subscription
+            const item = await findById(id);
+            // Actualizamos subscription campo deleted
+            const subscriptionOne = await prisma.subscription.update({
                 where: {
-                    id: user.id,
+                    id: item.id,
                 },
                 data: {
                     deletedAt: true
                 },
-            });
-            return success(req, res, "Successfully eliminated.", 200);
+            })
+                .then((item) => {
+                    return success(req, res, "Successfully eliminated.", 200);
+                });
         } catch (e) {
             return error(req, res, e?.message, 500, 0);
         }
