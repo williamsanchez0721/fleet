@@ -98,7 +98,7 @@ export default {
             // Actualizamos
             await prisma.user.update({
                 where: {
-                    id: id,
+                    id: user.id,
                 },
                 data: {
                     deletedAt: true

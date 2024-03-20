@@ -3,6 +3,22 @@ import { PrismaClient, Prisma } from '@prisma/client'
 
 const prisma = new PrismaClient();
 
+async function findById(id) {
+    const user = await prisma.product.findUnique({
+        where: {
+            id: id,
+            deletedAt: false,
+        },
+        include: {
+            benefits: true
+        }
+    });
+    if (!user) {
+        throw new Error('Not found.');
+    }
+    return user;
+}
+
 export default {
     all: async (req, res) => {
         try {
@@ -22,14 +38,8 @@ export default {
     one: async (req, res) => {
         try {
             const id = Number(req.params.id)
-            const product = await prisma.product.findUniqueOrThrow({
-                where: {
-                    id: id || 0,
-                },
-            })
-                .then((item) => {
-                    return success(req, res, 'Successfully consulted.', 200, item);
-                });
+            const item = await findById(id);
+            return success(req, res, 'Successfully consulted.', 200, item);
         } catch (e) {
             return error(req, res, e?.message, 500, 0);
         }
@@ -66,11 +76,14 @@ export default {
     },
     delete: async (req, res) => {
         try {
+            // Guardamos el id
             const id = Number(req.params.id)
+            // Buscamos el objeto
+            const item = await findById(id);
             // Actualizamos producto campo deleted
             const product = await prisma.product.update({
                 where: {
-                    id: id,
+                    id: item.id,
                 },
                 data: {
                     deletedAt: true
