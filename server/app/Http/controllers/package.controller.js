@@ -3,6 +3,23 @@ import { PrismaClient, Prisma } from '@prisma/client'
 
 const prisma = new PrismaClient();
 
+async function findById(id) {
+    const item = await prisma.package.findUnique({
+        where: {
+            id: id,
+            deletedAt: false,
+        },
+        include: {
+            services: true,
+            subscriptions: true,
+        }
+    });
+    if (!item) {
+        throw new Error('Not found.');
+    }
+    return item;
+}
+
 export default {
     all: async (req, res) => {
         try {
@@ -10,6 +27,10 @@ export default {
             const packages = await prisma.package.findMany({
                 where: {
                     deletedAt: false
+                },
+                include: {
+                    services: true,
+                    subscriptions: true,
                 }
             })
                 .then((items) => {
@@ -21,15 +42,9 @@ export default {
     },
     one: async (req, res) => {
         try {
-            const id_package = Number(req.params.id)
-            const packageOne = await prisma.package.findUniqueOrThrow({
-                where: {
-                    id: id_package || 0,
-                },
-            })
-                .then((item) => {
-                    return success(req, res, 'Successfully consulted.', 200, item);
-                });
+            const id = Number(req.params.id)
+            const item = await findById(id);
+            return success(req, res, 'Successfully consulted.', 200, item);
         } catch (e) {
             return error(req, res, e?.message, 500, 0);
         }
@@ -49,11 +64,13 @@ export default {
     },
     update: async (req, res) => {
         try {
-            const id_package = Number(req.params.id)
+            const id = Number(req.params.id)
+            // Buscamos el package
+            const item = await findById(id);
             // Actualizamos package buscado
             const packageOne = await prisma.package.update({
                 where: {
-                    id: id_package,
+                    id: item.id,
                 },
                 data: req.body,
             })
@@ -67,11 +84,13 @@ export default {
     delete: async (req, res) => {
         try {
             // Buscamos el package
-            const id_package = Number(req.params.id)
+            const id = Number(req.params.id)
+            // Buscamos el package
+            const item = await findById(id);
             // Actualizamos package campo deleted
             const packageOne = await prisma.package.update({
                 where: {
-                    id: id_package,
+                    id: item.id,
                 },
                 data: {
                     deletedAt: true

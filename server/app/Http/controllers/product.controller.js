@@ -4,19 +4,20 @@ import { PrismaClient, Prisma } from '@prisma/client'
 const prisma = new PrismaClient();
 
 async function findById(id) {
-    const user = await prisma.product.findUnique({
+    const item = await prisma.product.findUnique({
         where: {
             id: id,
             deletedAt: false,
         },
         include: {
-            benefits: true
+            benefits: true,
+            sales: true,
         }
     });
-    if (!user) {
+    if (!item) {
         throw new Error('Not found.');
     }
-    return user;
+    return item;
 }
 
 export default {
@@ -26,6 +27,10 @@ export default {
             const products = await prisma.product.findMany({
                 where: {
                     deletedAt: false
+                },
+                include: {
+                    benefits: true,
+                    sales: true,
                 }
             })
                 .then((items) => {
@@ -60,10 +65,12 @@ export default {
     update: async (req, res) => {
         try {
             const id = Number(req.params.id)
+            // Buscamos el product
+            const item = await findById(id);
             // Actualizamos producto buscado
             const product = await prisma.product.update({
                 where: {
-                    id: id,
+                    id: item.id,
                 },
                 data: req.body,
             })
