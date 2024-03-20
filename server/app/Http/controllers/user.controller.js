@@ -9,6 +9,9 @@ async function findUserById(id) {
         where: {
             id: id,
             deletedAt: false,
+        },
+        include: {
+            role: true
         }
     });
     if (!user) {
@@ -30,6 +33,9 @@ export default {
             const users = await prisma.user.findMany({
                 where: {
                     deletedAt: false
+                },
+                include: {
+                    role: true
                 }
             })
                 .then((items) => {
