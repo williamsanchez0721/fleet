@@ -1,0 +1,102 @@
+.about {
+    padding: 50px 20px;
+}
+.about__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.about__title h3 {
+    letter-spacing: 5px;
+    color: var(--CI-Teal);
+}
+.about__title h2 {
+    max-width: 675px;
+    font-size: 32px;
+    color: var(--primary-CI-Dark-Tea);
+    text-align: center;
+    margin: 0;
+}
+.about__title span {
+    color: var(--primary-CI-Teal);
+}
+.about__content {
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+.content__title {
+    max-width: 540px;
+}
+.content__title h4 {
+    color: var(--CI-Teal);
+    letter-spacing: 5px;
+    font-size: 18px;
+    margin: 0;
+}
+.content__title h2 {
+    color: var(--primary-CI-Dark-Tea);
+    font-size: 32px;
+    margin: 0;
+}
+.content__title p {
+    color: var(--primary-CI-Dark-Tea);
+}
+.content__title ul {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+}
+.content__title ul li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--primary-CI-Dark-Tea);
+}
+.content__title ul li img {
+    width: 35px;
+    border-radius: 30px;
+    box-shadow: 0px 6px 13px 0px rgba(145,145,145,0.2);
+}
+.content__title ul li img:hover {
+    background: white;
+    width: 35px;
+    border-radius: 30px;
+    box-shadow: 0px 6px 13px 0px rgba(145,145,145,0.2);
+}
+.about__benefits {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    min-height: 350px;
+}
+.benefit {
+    max-width: 300px;
+    padding: 20px 50px;
+    box-shadow: 0px 15px 38px 0px rgba(0,0,0,0.1);
+    text-align: center;
+    border-radius: 20px;
+    color: var(--primary-CI-Dark-Tea);
+}
+.benefit:hover {
+    background: var(--primary-CI-Teal);
+    color: white;
+    transition: .4s;
+}
+.benefit h4 {
+    font-size: 32px;
+    margin: 0;
+}
+.benefit svg {
+    background: var(--primary-CI-Teal);
+    box-shadow: 0px 9px 30px 0px rgba(30,174,168,0.5);
+    padding: 5px;
+    border-radius: 50px;
+}
