@@ -5,7 +5,7 @@ import passport from 'passport';
 const router = Router();
 
 
-router.post('/register', authController.login)
+router.post('/register', authController.register)
 
 // Rutas login
 router.post('/login', authController.login)
