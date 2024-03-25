@@ -25,7 +25,7 @@ const Navbar = () => {
           </a> 
         </li>
         <li className={styles['navbar-item']}>
-          <a href="#" className={styles.login}>Login</a>
+          <a href="/accounts/login" className={styles.login}>Login</a>
         </li>
       </ul>
     </nav>

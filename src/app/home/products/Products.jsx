@@ -1,12 +1,10 @@
 'use client'
 import { useEffect } from 'react'
 import styles from './products.module.css'
-import UrlApi from '@/app/config/Config'
-import axios from '@/app/config/axios'
+import axios from '../../config/axios'
 
 const Products = ()=> {
-    const api = UrlApi;
-    console.log(api)
+    
     const Product = [
         {
             id: 1,
