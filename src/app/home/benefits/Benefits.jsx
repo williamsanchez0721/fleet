@@ -5,7 +5,7 @@ const Benefits = ()=> {
         <section className={styles.benefits} id='benefits'>
             <div className={styles.thebenefits}>
                 <div className={styles.benefits__img}>
-                    <img src="3.png" alt="" width={500}/>
+                    <img src="3.png" alt="" />
                 </div>
                 <div className={styles.benefits__description}>
                     <h2>The Benefits</h2>
@@ -69,7 +69,7 @@ const Benefits = ()=> {
                 </div>
                 <div className={styles.product__image}>
                     <figure>
-                        <img src="img-5.png" alt="" width={500}/>
+                        <img src="img-5.png" alt=""/>
                         <figcaption>* Example of a Forklift iQ360 device.</figcaption>
                     </figure>
                 </div>
