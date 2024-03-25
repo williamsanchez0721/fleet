@@ -61,5 +61,21 @@ export default {
     logoutGoogle: async (req, res) => {
         req.logout();
         res.redirect(config?.CLIENT_URL);
-    }
+    },
+    register: async (req, res) => {
+        try {
+            // Cambiar la contraseña
+            req.body.password = await encryption(req.body.password)
+            // Crear usuario
+            const new_user = await prisma.user
+                .create({
+                    data: req.body,
+                })
+                .then((item) => {
+                    return success(req, res, 'Successfully created.', 201, item);
+                });
+        } catch (e) {
+            return error(req, res, e?.message, 500, 0);
+        }
+    },
 };

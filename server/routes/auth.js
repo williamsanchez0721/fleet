@@ -4,6 +4,9 @@ import passport from 'passport';
 
 const router = Router();
 
+
+router.post('/register', authController.login)
+
 // Rutas login
 router.post('/login', authController.login)
 
