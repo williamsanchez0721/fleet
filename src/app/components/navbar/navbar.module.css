@@ -5,35 +5,50 @@
     align-items: center;
     width: 100%;
     padding: 5px 0px;
-    background: #ffffffdc;
+    background: #ffffff;
     background-size: cover;
     min-height: 70px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.333); 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
   
   .navbar-list {
+    display: flex;
+    align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
   }
   
   .navbar-item {
     padding: 10px 20px;
-    color: #333; /* Cambia el color del texto a negro */
+    color: #333; 
     cursor: pointer;
+    font-weight: 600;
     transition: transform 0.7s;
-    border-radius: 50px; /* Agrega bordes redondeados */
+    border-radius: 50px; 
   }
   .navbar-item:active {
-    background: #204452;
     color: white;
   }
-  .navbar-item:hover {
-    /*transform: translateY(10px);  Efecto de elevación */
-    transform: translateY(-4px);
-    background: #204452;
-    color: white;
+  .navbar-item a {
+    text-decoration: none;
+    color: var(--primary-CI-Dark-Tea);
+    transition: .4s;
+  }
+  .navbar-item a:hover {
+    color: #1EAEA8;
   }
   
-  
+  .login {
+    background: white;
+    text-decoration: none;
+    border: 1px solid var(--primary-CI-Teal);
+    color: var(--primary-CI-Teal);
+    padding: 5px 15px;
+    border-radius: 30px;
+    transition: 0.4s;
+  }
+  .login:hover {
+    background: var(--primary-CI-Teal);
+    color: white!important;
+  }

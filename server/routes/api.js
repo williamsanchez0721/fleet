@@ -1,4 +1,5 @@
 import { createSession, getResponse } from '../app/Http/Controllers/payment.controller.js';
+import subscriptionController from '../app/Http/Controllers/subscription.controller.js';
 import productController from '../app/Http/Controllers/product.controller.js';
 import packageController from '../app/Http/Controllers/package.controller.js';
 import userController from '../app/Http/Controllers/user.controller.js';
@@ -11,6 +12,13 @@ router.get('/', getResponse)
 router.get('/create-checkout-session', createSession)
 router.get('/success', (req, res) => res.send('success'))
 router.get('/cancel', (req, res) => res.send('cancel'))
+
+// Subscriptions
+router.get('/subscriptions', subscriptionController.all)
+router.get('/subscriptions/show/:id', subscriptionController.one)
+router.post('/subscriptions/create', subscriptionController.create)
+router.put('/subscriptions/edit/:id', subscriptionController.update)
+router.delete('/subscriptions/:id', subscriptionController.delete)
 
 // Products
 router.get('/products', productController.all)

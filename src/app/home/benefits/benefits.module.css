@@ -1,0 +1,119 @@
+.thebenefits {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding-top: 50px;
+}
+.benefits__description {
+    max-width: 540px;
+    color: var(--primary-CI-Dark-Tea);
+}
+.benefits__description h2 {
+    font-size: 38px;
+    margin: 0;
+}
+.benefits__description p {
+    margin-top: 15px;
+    line-height: 30px;
+}
+.benefits__button {
+    margin-top: 50px;
+}
+.benefits__button a {
+    padding: 15px 40.4px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    border-radius: 65px;
+    font-weight: 600;
+    text-align: center;
+    background: var(--primary-CI-Teal);
+    color: #ffffff;
+    font-size: 18px;
+    box-shadow: 0px 9px 30px 0px rgba(30,174,168,0.4);
+}
+.benefits__products {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 60px 0px;
+}
+.product__atributtes {
+    max-width: 478px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+.product {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.product__icon {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-radius: 40px;
+    min-height: 35px;
+    box-shadow: 0px 6px 13px 0px rgba(145,145,145,0.2);
+}
+.product__icon path {
+    fill: var(--primary-CI-Teal);
+}
+
+.product:hover .product__icon {
+    background: var(--primary-CI-Teal);
+    transition: .4s;
+}
+
+.product:hover .product__icon path {
+    fill: white;
+}
+.product__description {
+    color: var(--primary-CI-Dark-Tea);
+}
+.product__description h3{
+    font-size: 22px;
+    margin: 0px 0px 10px 0px;
+}
+.product__description p {
+    margin: 0;
+}
+.product__image figure figcaption {
+    font-style: italic;
+    font-size: 12px;
+    color: grey;
+    text-align: center;
+}
+
+.benefit_fleet {
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    min-height: 350px;
+}
+.benefit {
+    max-width: 300px;
+    padding: 20px 50px;
+    box-shadow: 0px 15px 38px 0px rgba(0,0,0,0.1);
+    text-align: center;
+    border-radius: 20px;
+    color: var(--primary-CI-Dark-Tea);
+}
+.benefit:hover, .benefit path {
+    fill: #ffffff;
+    transition: .4s;
+}
+.benefit h4 {
+    font-size: 32px;
+    margin: 0;
+}
+.benefit svg {
+    box-shadow: 0px 9px 30px 0px rgba(30,174,168,0.5);
+    padding: 10px;
+    border-radius: 20px;
+    background: var(--primary-CI-Teal);
+}

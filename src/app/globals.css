@@ -3,9 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primary-CI-Teal: #1EAEA8;
+  --primary-CI-Dark-Tea: #204452;
+  --CI-Blue: #19B9E3;
+  --CI-Teal: #1EAEA8;
+  --CI-Green: #A8BA22;
+  --CI-Orange: #FE9D2B;
+  --CI-Red: #ED4C14;
+}
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -15,3 +22,7 @@ body {
   font-family: sans-serif;
 }
 
+h1::selection, h2::selection, h3::selection, h4::selection, p::selection, li::selection, a::selection, span::selection, strong::selection {
+  background-color: var(--primary-CI-Teal);
+  color: white;
+}

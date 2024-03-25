@@ -1,19 +1,58 @@
 .header {
-    /* background: url('../../../../public/auth/1.webp') no-repeat; */
-    background-color: white;
+    background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('../../../../public/fleet-3.jpg') no-repeat;
+    /* background-color: #f7f7f7 !important; */
+    /* background: var(--primary-CI-Dark-Tea); */
     background-size: cover;
     min-height: 100vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 }
 .header__content {
-    max-width: 420px;
+    max-width: 480px;
 }
-.header__image img {
+.header__content p, .header__content h1, .header__content h3 {
+    color: white;
+}
+.header__content h1 {
+    font-size: 42px;
+    line-height: 50px;
+}
+.header__content p {
+    font-size: 18px;
+}
+.header__content h3, .header__content span {
+    color: var(--primary-CI-Teal);
 }
 .image__phone {
     position: absolute;
     top: 100px;
     left: 0;
+}
+.header__buttons {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.header__buttons a {
+    background: var(--primary-CI-Teal);
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 30px;
+    font-weight: 500;
+    
+}
+.header__buttons a:hover {
+    background: white;
+    /* border: 1px solid var(--primary-CI-Teal); */
+    color: var(--primary-CI-Teal);
+    transition: 0.4s ease;
+}
+.header__image img {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.363);
+    height: 100%;
+    object-fit: cover;
 }
