@@ -20,8 +20,7 @@ const About = ()=> {
                     </ul>
                 </div>
                 <div className={styles.content__image}>
-                    {/* <img src="forklift-6-1024x673-removebg-preview.png" alt="" className={styles.image__phone} width={600}/> */}
-                    <img src="safety.png" alt="" width={600}/>
+                    <img src="safety.png" alt="" />
                 </div>
             </div>
             <div className={styles.about__benefits}>

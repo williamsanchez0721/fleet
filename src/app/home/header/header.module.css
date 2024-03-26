@@ -56,3 +56,23 @@
     height: 100%;
     object-fit: cover;
 }
+
+@media(max-width: 992px) {
+    .header {
+        align-items: end;
+    }
+    .header__content {
+        padding: 100px 20px;
+    }
+    .header__content h1 {
+        font-size: 32px;
+        line-height: 40px;
+    }
+    .header__content p {
+        font-size: 16px;
+    }
+    .header__buttons a {
+        padding: 10px 20px;
+        transition: .4s;
+    }
+}
