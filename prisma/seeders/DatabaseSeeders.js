@@ -4,6 +4,7 @@ import RoleSeeder from './RoleSeeder.js';
 import UserSeeder from './UserSeeder.js';
 import SubscriptionSeeder from './SubscriptionSeeder.js';
 import ProductSeeder from './ProductSeeder.js';
+import PackageSeeder from './PackageSeeder.js';
 
 const prisma = new PrismaClient();
 
@@ -12,6 +13,7 @@ async function main() {
   await UserSeeder(prisma);
   await SubscriptionSeeder(prisma);
   await ProductSeeder(prisma);
+  await PackageSeeder(prisma);
 }
 
 main()
