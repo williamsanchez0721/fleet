@@ -84,3 +84,9 @@ Estas variables son específicas para la autenticación con Google.
 ---
 
 **Nota:** Asegúrate de configurar estas variables de entorno según sea necesario para tu entorno de desarrollo, prueba o producción. Los valores predeterminados aquí proporcionados son solo ejemplos y pueden requerir modificaciones.
+
+### `EJECUTAR SEEDERS`
+
+```bash
+node prisma/seeders/DatabaseSeeders.js
+```
