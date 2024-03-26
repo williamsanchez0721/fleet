@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "api": "nodemon server/index.js"
+    "api": "nodemon server/index.js",
+    "seed": "npx prisma generate && node prisma/seeders/DatabaseSeeders.js"
   },
   "dependencies": {
     "@prisma/client": "^5.10.2",
