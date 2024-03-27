@@ -1,5 +1,7 @@
 .benefits {
     padding: 0px 50px;
+    /* background: url(../../../../public/background.svg) no-repeat;
+    background-size: cover; */
 }
 .thebenefits {
     display: flex;

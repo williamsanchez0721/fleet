@@ -3,14 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --primary-CI-Teal: #1EAEA8;
-  --primary-CI-Dark-Tea: #204452;
+  --primary-CI-Teal: #ffba00;
+  /* --primary-CI-Teal: #1EAEA8; */
+  --primary-CI-Dark-Tea: #303030;
+  /* --primary-CI-Dark-Tea: #204452; */
   --CI-Blue: #19B9E3;
-  --CI-Teal: #1EAEA8;
+  /* --CI-Teal: #1EAEA8; */
+  --CI-Teal: #ffba00;
   --CI-Green: #A8BA22;
   --CI-Orange: #FE9D2B;
   --CI-Red: #ED4C14;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -22,7 +26,15 @@ body {
   font-family: sans-serif;
 }
 
-h1::selection, h2::selection, h3::selection, h4::selection, p::selection, li::selection, a::selection, span::selection, strong::selection {
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+p::selection,
+li::selection,
+a::selection,
+span::selection,
+strong::selection {
   background-color: var(--primary-CI-Teal);
   color: white;
 }

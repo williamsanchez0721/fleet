@@ -1,0 +1,137 @@
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.background {
+    width: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../../../../public/forklift1.jpg') no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: url('../../../../public/background.svg') no-repeat;
+    background-size: cover;
+}
+.container form {
+    max-width: 350px;
+    max-height: 500px;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+.form__item a, .login a {
+    color: var(--CI-Blue);
+}
+.form__item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+.form__item input {
+    padding: 15px 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    border: 1px solid #e3e3e3;
+}
+.form__item label {
+    font-size: 16px;
+    color: var(--primary-CI-Dark-Tea);
+    font-weight: 600;
+}
+.conditions {
+    flex-direction: row;
+}
+.check {
+    width: 20px;
+    height: 15px;
+} 
+.content__title {
+    color: var(--primary-CI-Dark-Tea);
+}
+.content__title h3, .content__title p {
+    margin: 0;
+}
+.content__title h3 {
+    font-size: 32px;
+}
+.content__google {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+.content__google button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.content__google button:hover {
+    background: var(--primary-CI-Dark-Tea);
+    color: white;
+    transition: .4s;
+}
+.separator {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    gap: 5px;
+}
+.separator div {
+    width: 100%;
+}
+.separator p {
+    margin: 0;
+}
+.separator hr {
+    border: none;
+    height: 1px;
+    background-color: #e3e3e3; 
+  }
+  .button__form {
+    width: 100%;
+  }
+  .button__form button{
+    padding: 15px 10px;
+    font-size: 16px;
+    font-weight: 600;
+    background: var(--primary-CI-Dark-Tea);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+  }
+
+.login {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+@media(max-width: 768px) {
+    .register {
+        flex-wrap: wrap;
+    }
+    .background {
+        display: none;
+    }
+}
